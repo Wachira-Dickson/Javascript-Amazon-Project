@@ -98,6 +98,9 @@
       });
 
       console.log('load products'); 
+      
+    }).catch((error) => {
+      console.error('Unexpected error loading products. Please try again later.');
     });
 
     return promise;
@@ -121,8 +124,12 @@
       console.log('load products'); 
 
       fun();
-
     });
+
+    xhr.addEventListener('error', (error) => { 
+      console.error('Unexpected error loading products. Please try again later.');
+    });
+
     xhr.open('GET', 'https://supersimplebackend.dev/products');
     xhr.send();
   }
